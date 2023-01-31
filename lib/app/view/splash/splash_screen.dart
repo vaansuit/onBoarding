@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import '../home/home_page.dart';
+
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -21,15 +23,14 @@ class _SplashScreenState extends State<SplashScreen>
       if (status == AnimationStatus.completed) {
         _controller.reverse();
         await Future.delayed(const Duration(seconds: 1));
+      } else if (status == AnimationStatus.dismissed) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(),
+          ),
+        );
       }
-      // else if (status == AnimationStatus.dismissed) {
-      //   Navigator.pushReplacement(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) => const HomePage(),
-      //     ),
-      //   );
-      // }
     });
 
     _controller.forward();
@@ -47,10 +48,12 @@ class _SplashScreenState extends State<SplashScreen>
       child: FadeTransition(
         opacity: _fadeAnimation as Animation<double>,
         child: Container(
-          width: 200.0,
-          height: 200.0,
+          width: MediaQuery.of(context).size.width * 0.5,
+          height: MediaQuery.of(context).size.height * 0.3,
           decoration: const BoxDecoration(
-            color: Colors.yellow,
+            image: DecorationImage(
+              image: AssetImage('img/logo.jpg'),
+            ),
             borderRadius: BorderRadius.all(
               Radius.circular(10),
             ),

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import '../home/home_page.dart';
+import '../onboarding/onboarding_page.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashPage extends StatefulWidget {
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with TickerProviderStateMixin {
+class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation _fadeAnimation;
   final _duration = const Duration(seconds: 3);
@@ -27,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen>
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePage(),
+            builder: (context) => OnboardingPage(),
           ),
         );
       }
